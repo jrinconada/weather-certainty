@@ -2,7 +2,7 @@
 def rain_certainty(days):
     rain = 'totalprecip_mm'
     week_certainty = [0.0] * 7
-    samples = 0 # Actual number of samples being processed
+    samples = [0] * 7 # Actual number of samples being processed
 
     for day in days: # For every day in the data
         for i in range(7): # For every day in the 7 day forecast
@@ -12,6 +12,9 @@ def rain_certainty(days):
                 # Forecast was correct
                 if (was_rainy and (forecast[rain] != 0)) or (not was_rainy and (forecast[rain] == 0)):
                     week_certainty[i] += 1
-                samples += 1
+                samples[i] += 1
     # Divide correct hits by number of samples to compute certainty
-    return [i / samples for i in week_certainty]
+    for i in range(7):
+        if samples[i] != 0:
+            week_certainty[i] = week_certainty[i] / samples[i]
+    return week_certainty
