@@ -24,6 +24,7 @@ def graph(days, day, what):
     if day not in days:
         print(day, 'not found')
         return
+
     # Populate x with the previous dates
     first_date = date.from_str(day)
     x_labels = [date.add_to(first_date, -i) for i in reversed(range(7))]

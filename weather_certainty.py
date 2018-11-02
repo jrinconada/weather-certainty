@@ -2,6 +2,7 @@ import weather  # Weather API for updating data
 import date     # Date formatting
 import storage  # File storage
 import display  # Printing and plotting data
+import analysis # Anlysing certainty
 
 max_days = 7
 location = 'Madrid'
@@ -29,6 +30,8 @@ def save_data(days):
     storage.write(location, days)
 
 days = read_data()
-display.show(days, 'avgtemp_c')
-display.show_for(days, '2018-11-08', 'avgtemp_c')
-display.graph(days, '2018-11-08', 'avgtemp_c')
+is_it_going_to_rain = analysis.rain_certainty(days)
+print(is_it_going_to_rain)
+# display.show(days, 'avgtemp_c')
+# display.show_for(days, '2018-11-08', 'avgtemp_c')
+# display.graph(days, '2018-11-08', 'avgtemp_c')
