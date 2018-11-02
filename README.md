@@ -1,2 +1,2 @@
-# weather-certainty
-analysing weather data to predict the certainty of 7 day forecast
+# Weather Certainty
+Analysing weather data to predict the certainty of a 7 day forecast.
