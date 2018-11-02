@@ -10,14 +10,20 @@ def show(days, what):
         print('')
 
 def show_for(days, day, what):
-    if day in days:
-        print(day)
-        for forecast in days[day]:
-            if what in forecast:
-                print('\t', what, end=' ')
-                print(forecast[what])
+    if day not in days:
+        print(day, 'not found')
+        return
+
+    print(day)
+    for forecast in days[day]:
+        if what in forecast:
+            print('\t', what, end=' ')
+            print(forecast[what])
 
 def graph(days, day, what):
+    if day not in days:
+        print(day, 'not found')
+        return
     # Populate x with the previous dates
     first_date = date.from_str(day)
     x_labels = [date.add_to(first_date, -i) for i in reversed(range(7))]
