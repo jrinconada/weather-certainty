@@ -33,8 +33,7 @@ def graph(days, day, what):
     # Populate y with the values of the field forecast
     y = [0.0 for x in range(7)]
     for i in range(7):
-        forecast = days[day][i]
-        print(i, forecast)
+        forecast = days[day][i]        
         if what in forecast:
             y[i] = float(forecast[what])
 

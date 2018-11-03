@@ -35,7 +35,7 @@ days = read_data()
 console.menu()
 choice = ''
 while choice != 'q':
-    choice = console.command()
+    choice, param, day = console.command()
     if choice == 'm' or choice == '': # Show menu again
         console.menu()
     elif choice == 'u': # Update data
@@ -44,9 +44,10 @@ while choice != 'q':
         save_data(days)
         print('Data updated.')
     elif choice == 's': # Show data
-        display.show(days, 'avgtemp_c')
-        display.show_for(days, '2018-11-08', 'avgtemp_c')
-        display.graph(days, '2018-11-08', 'avgtemp_c')
+        if day != '':
+            display.graph(days, day, param)
+        else:
+            display.show(days, param)
     elif choice == 'c': # Compute certainty
         is_it_going_to_rain = analysis.rain_certainty(days)
         print(is_it_going_to_rain)
