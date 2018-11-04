@@ -1,10 +1,7 @@
 
-def rain_certainty(days, params=[], references=[], thresholds=[]):
-    # Error check
-    if len(params) != len(thresholds):
-        print('Params and thresholds must be the same length')
-        return
-
+# Returns a list with the probability of rain for every day in a 7 day forecast
+# To filter data add a list of parameters, a dictionary of reference values and threshold values
+def rain_certainty(days, params=[], references={}, thresholds={}):
     rain = 'totalprecip_mm'
     week_certainty = [0.0] * 7
     samples = [0] * 7 # Actual number of samples being processed
@@ -31,6 +28,6 @@ def filter(forecast, params, references, thresholds):
     if not params:
         return False
     for param in params:
-        if abs(references[params] - forecast[param]) > thresholds:
+        if param in forecast and abs(references[param] - forecast[param]) > thresholds[param]:
             return False
     return True

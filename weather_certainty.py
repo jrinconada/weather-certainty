@@ -30,6 +30,7 @@ def update_data(days):
 def save_data(days):
     storage.write(location, days)
 
+print('Loading...')
 days = read_data()
 
 console.menu()
@@ -49,7 +50,8 @@ while choice != 'q':
         else:
             display.show(days, param)
     elif choice == 'c': # Compute certainty
-        is_it_going_to_rain = analysis.rain_certainty(days)
+        is_it_going_to_rain = analysis.rain_certainty(days, ['avghumidity'], {'avghumidity' : 50.0}, {'avghumidity' : 0.0})
+        # is_it_going_to_rain = analysis.rain_certainty(days)
         print(is_it_going_to_rain)
     elif choice == 'p':
         for forecast in list(days.values())[0]:
